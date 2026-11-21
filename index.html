@@ -1,1 +1,26 @@
-<h1>SYCLIMEX - en construction</h1>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SYCLIMEX - test connexion</title>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body style="font-family:sans-serif;padding:20px">
+<h2>SYCLIMEX - test de connexion</h2>
+<div id="g_id_onload" data-client_id="658854212904-nttp65hftfr6el8qsjlnbjtk9obubg2t.apps.googleusercontent.com" data-callback="surConnexion" data-auto_prompt="false"></div>
+<div class="g_id_signin" data-type="standard" data-size="large" data-text="signin_with" data-locale="fr"></div>
+<p id="resultat">Non connecte.</p>
+<script>
+function surConnexion(reponse) {
+  try {
+    var morceau = reponse.credential.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+    var donnees = JSON.parse(decodeURIComponent(escape(atob(morceau))));
+    document.getElementById('resultat').textContent = 'Connecte : ' + donnees.email;
+  } catch (e) {
+    document.getElementById('resultat').textContent = 'Erreur : ' + e.message;
+  }
+}
+</script>
+</body>
+</html>
